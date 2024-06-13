@@ -1,0 +1,23 @@
+<!-- templates/edit_task.html -->
+
+{% extends "base.html" %}
+{% block title %}Edit Task{% endblock %}
+{% block content %}
+    <h1>Edit Task</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.title.label }}: {{ form.title }}
+        </div>
+        <div>
+            {{ form.description.label }}: {{ form.description }}
+        </div>
+        <div>
+            {{ form.due_date.label }}: {{ form.due_date }}
+        </div>
+        <div>
+            {{ form.category.label }}: {{ form.category }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Task</button>
+    </form>
+{% endblock %}

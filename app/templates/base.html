@@ -4,13 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %} - TaskManager</title>
-    <!-- Bootstrap CSS link (example) -->
+    <!-- Bootstrap CSS link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <!-- Additional CSS stylesheets or scripts -->
     <style>
         /* Customize your styles here */
         body {
-            padding: 20px;
+            padding-top: 20px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #007bff; /* Bootstrap primary color */
+        }
+        .nav-link {
+            color: #6c757d; /* Bootstrap secondary color */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-outline-danger {
+            color: #dc3545;
+            border-color: #dc3545;
         }
         .alert {
             margin-bottom: 10px;
@@ -27,26 +46,33 @@
             border-color: #f5c6cb;
             color: #721c24;
         }
-        /* Add more styles as needed */
+        .form-control {
+            border-color: #ced4da;
+        }
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
     </style>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('main.home') }}">TaskManager</a>
+        <a class="navbar-brand" href="{{ url_for('main.entrance') }}">TaskManager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ml-auto">
                 {% if current_user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.account') }}">Account</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('main.new_task') }}">New Task</a>
+                        <a class="nav-link" href="{{ url_for('main.new_task') }}">
+                        <i class="fas fa-plus-circle"></i> New Task</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url_for('main.logout') }}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('main.home') }}">My Tasks</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
@@ -59,7 +85,7 @@
             </ul>
         </div>
     </nav>
-    <div class="container">
+    <div class="container mt-4">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -71,7 +97,7 @@
         {% endwith %}
         {% block content %}{% endblock %}
     </div>
-    <!-- Bootstrap JS and other scripts (example) -->
+    <!-- Bootstrap JS and other scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

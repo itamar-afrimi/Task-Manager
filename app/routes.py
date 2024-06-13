@@ -13,7 +13,13 @@ def entrance():
     return render_template('index.html')
 @main.route("/home")
 def home():
-    tasks = Task.query.all()
+    search_query = request.args.get('q')
+    if search_query:
+        tasks = Task.query.filter(
+            Task.title.contains(search_query) | Task.description.contains(search_query)).filter_by(
+            author=current_user).all()
+    else:
+        tasks = Task.query.filter_by(author=current_user).order_by(Task.due_date.asc()).all()
     return render_template('home.html', title='Home', tasks=tasks)
 
 @main.route("/register", methods=['GET', 'POST'])
@@ -60,7 +66,7 @@ def login():
 @main.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.entrance'))
 
 @main.route("/account")
 @login_required
@@ -100,3 +106,20 @@ def delete_task(task_id):
 def task(task_id):
     task = Task.query.get_or_404(task_id)
     return render_template('task.html', title=task.title, task=task)
+
+@main.route("/task/<int:task_id>/edit", methods=['GET', 'POST'])
+@login_required
+def edit_task(task_id):
+    task = Task.query.get_or_404(task_id)
+
+    if task.author != current_user:
+        flash('You are not authorized to delete this task.', 'danger')
+        return redirect(url_for('main.home'))
+    form = TaskForm(obj=task)
+    if form.validate_on_submit():
+        form.populate_obj(task)  # Update task fields with form data
+        db.session.commit()
+        flash('Your task has been updated!', 'success')
+        return redirect(url_for('main.home'))
+
+    return render_template('edit_task.html', title='Edit Task', form=form)

@@ -1,0 +1,39 @@
+/* styles.css */
+body {
+    background-color: #f0f0f0; /* Light gray background */
+    font-family: Arial, sans-serif; /* Use a common font for readability */
+}
+
+.navbar {
+    background-color: #ffffff; /* White navbar background */
+    border-bottom: 1px solid #ddd; /* Light gray border bottom */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #333; /* Dark gray text color */
+}
+
+.navbar-nav .nav-link {
+    color: #555; /* Medium gray text color */
+}
+
+.card {
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 4px;
+    padding: 15px;
+    background-color: #fff; /* White card background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary blue button */
+    border-color: #007bff;
+    color: #fff; /* White text color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    border-color: #0056b3;
+}
