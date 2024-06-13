@@ -4,14 +4,11 @@ blinker==1.8.2
 click==8.1.7
 dnspython==2.6.1
 email_validator==2.1.1
-Flask==x.x.x  # Replace with your Flask version
-Flask-SQLAlchemy==x.x.x  # Replace with your Flask-SQLAlchemy version
-psycopg2-binary==x.x.x   # PostgreSQL adapter for Python
-
+Flask==3.0.3
 Flask-Bcrypt==1.0.1
 Flask-Login==0.6.3
 Flask-Migrate==4.0.7
-
+Flask-SQLAlchemy==3.1.1
 Flask-WTF==1.2.1
 greenlet==3.0.3
 gunicorn==22.0.0
@@ -22,7 +19,7 @@ Jinja2==3.1.4
 Mako==1.3.5
 MarkupSafe==2.1.5
 packaging==24.1
-
+psycopg2-binary==2.9.9
 SQLAlchemy==2.0.30
 typing_extensions==4.12.2
 Werkzeug==3.0.3
