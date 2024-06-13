@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h1>Hello, {{ current_user.username }}</h1>
+    <h2>Task List</h2>
+    {% for task in tasks %}
+        <div>
+            <h3>{{ task.title }}</h3>
+            <p>{{ task.description }}</p>
+            <p>Due: {{ task.due_date }}</p>
+            <p>Category: {{ task.category }}</p>
+            <p>Posted on: {{ task.date_posted }}</p>
+        </div>
+    {% endfor %}
+    <!-- Add other user-specific content as needed -->
+{% endblock %}
